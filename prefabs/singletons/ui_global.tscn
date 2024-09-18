@@ -1,0 +1,244 @@
+[gd_scene load_steps=10 format=3 uid="uid://2nj2e0kfbnci"]
+
+[ext_resource type="Script" path="res://code/scripts/core/ui_global.gd" id="1_541xp"]
+[ext_resource type="Script" path="res://code/scripts/ui/page_manager.gd" id="2_opfyf"]
+[ext_resource type="Script" path="res://code/scripts/ui/pages/main_menu/main_page.gd" id="3_6guta"]
+[ext_resource type="Script" path="res://code/scripts/ui/components/navigation_button.gd" id="4_f4nne"]
+[ext_resource type="Script" path="res://code/scripts/ui/pages/main_menu/settings_page.gd" id="5_1fmif"]
+[ext_resource type="Script" path="res://code/scripts/ui/page.gd" id="6_rwb6y"]
+[ext_resource type="Script" path="res://code/scripts/ui/pages/game/paused_page.gd" id="7_rqe5a"]
+[ext_resource type="Script" path="res://code/scripts/ui/pages/game/started_page.gd" id="8_vm2ye"]
+[ext_resource type="Script" path="res://code/scripts/ui/pages/game/ended_page.gd" id="9_xgms3"]
+
+[node name="UiGlobal" type="CanvasLayer" node_paths=PackedStringArray("_page_manager")]
+script = ExtResource("1_541xp")
+_page_manager = NodePath("Pages")
+
+[node name="Pages" type="Control" parent="." node_paths=PackedStringArray("_pages")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_opfyf")
+_pages = [NodePath("MainMenu_Main"), NodePath("MainMenu_Settings"), null, NodePath("LoadingLevel"), NodePath("Game_Pause"), NodePath("Game_Started"), NodePath("Game_Ended")]
+_initial_page_name = &"MainMenu_Main"
+
+[node name="MainMenu_Main" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_6guta")
+
+[node name="CenterContainer" type="CenterContainer" parent="Pages/MainMenu_Main"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/MainMenu_Main/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StartButton" type="Button" parent="Pages/MainMenu_Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="Pages/MainMenu_Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("4_f4nne")
+_target_page_name = &"MainMenu_Settings"
+
+[node name="ExitButton" type="Button" parent="Pages/MainMenu_Main/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="MainMenu_Settings" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_1fmif")
+
+[node name="CenterContainer" type="CenterContainer" parent="Pages/MainMenu_Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/MainMenu_Settings/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="SoundVolumeContainer" type="VBoxContainer" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SoundVolumeLabel" type="Label" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer/SoundVolumeContainer"]
+layout_mode = 2
+text = "Sound volume"
+
+[node name="SoundVolumeSlider" type="HSlider" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer/SoundVolumeContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeContainer" type="VBoxContainer" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+text = "Music volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer/MusicVolumeContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="Pages/MainMenu_Settings/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("4_f4nne")
+_target_page_name = &"MainMenu_Main"
+
+[node name="LoadingLevel" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rwb6y")
+
+[node name="ColorRect" type="ColorRect" parent="Pages/LoadingLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Pages/LoadingLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pages/LoadingLevel/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pages/LoadingLevel/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "Loading game"
+
+[node name="Game_Pause" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_rqe5a")
+
+[node name="ColorRect" type="ColorRect" parent="Pages/Game_Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.08, 0.286275)
+
+[node name="CenterContainer" type="CenterContainer" parent="Pages/Game_Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/Game_Pause/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Pages/Game_Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Pages/Game_Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="ReturnButton" type="Button" parent="Pages/Game_Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to main menu"
+
+[node name="Game_Started" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_vm2ye")
+
+[node name="Game_Ended" type="Control" parent="Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_xgms3")
+
+[node name="ColorRect" type="ColorRect" parent="Pages/Game_Ended"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.08, 0.286275)
+
+[node name="CenterContainer" type="CenterContainer" parent="Pages/Game_Ended"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/Game_Ended/CenterContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Pages/Game_Ended/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "You lose"
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="Pages/Game_Ended/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to main menu"
