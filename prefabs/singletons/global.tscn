@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciix6004226lu"]
 
 [ext_resource type="Script" path="res://code/scripts/core/global.gd" id="1_mylrl"]
-[ext_resource type="Script" path="res://code/scripts/core/level_manager.gd" id="2_7p5tt"]
+[ext_resource type="Script" path="res://code/scripts/core/scene_manager.gd" id="2_7p5tt"]
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("_level_manager", "_page_manager")]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("_scene_manager")]
 script = ExtResource("1_mylrl")
-_level_manager = NodePath("LevelManager")
-_page_manager = NodePath("")
+_scene_manager = NodePath("SceneManager")
 
-[node name="LevelManager" type="Node3D" parent="."]
+[node name="SceneManager" type="Node" parent="."]
 script = ExtResource("2_7p5tt")
